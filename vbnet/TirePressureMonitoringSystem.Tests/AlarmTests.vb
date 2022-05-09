@@ -5,7 +5,7 @@ Namespace TirePressureMonitoringSystem.Tests
     Public Class AlarmTests
         <Fact>
         Public Sub Foo()
-            Dim alarm As Alarm = New Alarm()
+            Dim alarm = New Alarm()
             
             Assert.False(alarm.AlarmOn)
         End Sub
