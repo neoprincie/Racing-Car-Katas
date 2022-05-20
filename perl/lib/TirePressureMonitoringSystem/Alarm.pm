@@ -5,16 +5,16 @@ use warnings;
 
 use lib 'lib/TirePressureMonitoringSystem';
 
-require Sensor;
+# require Sensor;
 
 sub new {
-    my ( $class ) = @_;
+    my ( $class, $sensor ) = @_;
     my $self = {
         alarmOn => '0',
         lowPressureThreshold => 17,
         highPressureThreshold => 21,
         alarmCount => 0,
-        sensor => new Sensor()
+        sensor => $sensor
     };
 
     bless $self, $class;
@@ -25,12 +25,20 @@ sub new {
 sub check {
     my ( $self ) = @_;
 
-    my $psiPressureValue = $self->{sensor}->popNextPressurePsiValue();
+    my $psiPressureValue = $self->poppNextPressurePsiValue();
 
     if ($psiPressureValue < $self->{lowPressureThreshold} or $self->{highPressureThreshold} < $psiPressureValue) {
         $self->{alarmOn} = '1';
         $self->{alarmCount} = $self->{alarmCount} + 1;
     }
+}
+
+sub poppNextPressurePsiValue {
+    my ( $self ) = @_;
+
+    print "um?";
+
+    return $self->{sensor}->popNextPressurePsiValue();
 }
 
 sub alarmOn {

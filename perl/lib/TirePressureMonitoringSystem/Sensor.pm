@@ -3,6 +3,8 @@ package Sensor;
 use strict;
 use warnings;
 
+use parent 'ISensor'
+
 sub new {
     my ( $class ) = @_;
     my $self = {
